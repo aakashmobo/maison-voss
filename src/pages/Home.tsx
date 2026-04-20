@@ -210,71 +210,52 @@ export function Home() {
               minHeight: "520px",
             }}
           >
-            {/* Portrait Placeholder */}
+            {/* Portrait — Editorial Fashion Photo */}
             <div
               style={{
                 width: "100%",
                 height: "100%",
-                backgroundColor: "#1c1c1c",
+                backgroundColor: "#0a0a0a",
                 position: "relative",
                 overflow: "hidden",
               }}
             >
-              {/* Subtle texture lines */}
-              <svg
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.06 }}
-                viewBox="0 0 400 600"
-                preserveAspectRatio="xMidYMid slice"
-              >
-                {Array.from({ length: 30 }).map((_, i) => (
-                  <line
-                    key={i}
-                    x1={0}
-                    y1={i * 22}
-                    x2={400}
-                    y2={i * 22}
-                    stroke="#f5f0eb"
-                    strokeWidth="0.5"
-                  />
-                ))}
-              </svg>
+              {/* Real editorial fashion photograph */}
+              <img
+                src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=80"
+                alt="Editorial fashion — model in structured black coat"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center 15%",
+                  filter: "grayscale(30%) contrast(1.08) brightness(0.85)",
+                  mixBlendMode: "luminosity",
+                }}
+              />
 
-              {/* Central editorial SVG figure — fashion silhouette */}
-              <svg
-                viewBox="0 0 240 480"
+              {/* Dark overlay vignette — editorial mood */}
+              <div
                 style={{
                   position: "absolute",
-                  bottom: 0,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "70%",
-                  height: "auto",
-                  opacity: 0.18,
+                  inset: 0,
+                  background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.15) 100%)",
+                  pointerEvents: "none",
                 }}
-                fill="none"
-                stroke="#f5f0eb"
-                strokeWidth="1"
-              >
-                {/* Head */}
-                <ellipse cx="120" cy="50" rx="28" ry="34" />
-                {/* Neck */}
-                <line x1="112" y1="82" x2="108" y2="110" />
-                <line x1="128" y1="82" x2="132" y2="110" />
-                {/* Shoulders — wide, structured coat */}
-                <path d="M60 115 Q80 108 108 110 L132 110 Q160 108 180 115" strokeLinecap="round" />
-                {/* Coat body — long, columnar */}
-                <path d="M60 115 L52 260 L70 430 L120 440 L170 430 L188 260 L180 115" strokeLinejoin="round" />
-                {/* Coat lapels */}
-                <path d="M108 110 L98 155 L120 175 L142 155 L132 110" />
-                {/* Arms */}
-                <path d="M60 115 Q40 180 44 250" strokeLinecap="round" />
-                <path d="M180 115 Q200 180 196 250" strokeLinecap="round" />
-                {/* Coat belt */}
-                <line x1="72" y1="235" x2="168" y2="235" strokeWidth="1.5" />
-                {/* Legs / hem */}
-                <path d="M88 430 L84 478" strokeLinecap="round" />
-                <path d="M152 430 L156 478" strokeLinecap="round" />
-              </svg>
+              />
+
+              {/* Film grain texture overlay */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  opacity: 0.04,
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+                  backgroundSize: "128px 128px",
+                  pointerEvents: "none",
+                  mixBlendMode: "overlay",
+                }}
+              />
 
               {/* Photographer meta — bottom left inside photo */}
               <div
@@ -287,6 +268,7 @@ export function Home() {
                   letterSpacing: "0.2em",
                   color: "#9a9080",
                   opacity: 0.6,
+                  zIndex: 3,
                 }}
               >
                 PHT. LENA VOGT — PARIS 2025

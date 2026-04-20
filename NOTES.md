@@ -10,7 +10,7 @@
 - All styling via inline styles (precise editorial values) + Tailwind utility classes
 - Horizontal rule cutting through "SILENCE" via absolute positioned div at top: 54%
 - Ticker: CSS keyframes animation, 40s linear infinite, duplicate spans for seamless loop
-- Portrait placeholder: SVG fashion silhouette + horizontal scan lines, ash gray #1c1c1c fill
+- Portrait: real Unsplash editorial fashion photo (photo-1509631179647-0177331693ae), desaturated 30%, contrast-boosted, with bottom vignette overlay and film grain texture
 - "NOW ARRIVING" lime pill badge positioned absolute top-right of portrait frame
 
 ## Palette
