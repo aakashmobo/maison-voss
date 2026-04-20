@@ -43,7 +43,7 @@ const PRODUCTS = [
     featured: false,
     aspectRatio: "4/3",
     wide: true,
-    imgSrc: "https://images.unsplash.com/photo-1594938298603-c8148c4b4057?w=900&auto=format&fit=crop&q=80",
+    imgSrc: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&auto=format&fit=crop&q=80",
   },
   {
     id: 5,
@@ -185,7 +185,14 @@ function ProductCard({
 /* ─────────────────────────────────────────
    SECTION 5 — LOOKBOOK STRIP
 ───────────────────────────────────────── */
-const PLATES = ["PLATE 01", "PLATE 02", "PLATE 03", "PLATE 04", "PLATE 05", "PLATE 06"];
+const PLATES = [
+  { label: "PLATE 01", img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&auto=format&fit=crop&q=80" },
+  { label: "PLATE 02", img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop&q=80" },
+  { label: "PLATE 03", img: "https://images.unsplash.com/photo-1502163140606-888448ae8cfe?w=500&auto=format&fit=crop&q=80" },
+  { label: "PLATE 04", img: "https://images.unsplash.com/photo-1467043237213-65f2da53396f?w=500&auto=format&fit=crop&q=80" },
+  { label: "PLATE 05", img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&auto=format&fit=crop&q=80" },
+  { label: "PLATE 06", img: "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?w=500&auto=format&fit=crop&q=80" },
+];
 
 function LookbookStrip() {
   return (
@@ -216,31 +223,51 @@ function LookbookStrip() {
           padding: "0 64px",
         }}
       >
-        {PLATES.map((label) => (
+        {PLATES.map((plate) => (
           <div
-            key={label}
+            key={plate.label}
             className="lookbook-card"
             style={{
               width: "280px",
               flexShrink: 0,
               aspectRatio: "2/3",
               backgroundColor: "#111",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
+            <img
+              src={plate.img}
+              alt={plate.label}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center top",
+                filter: "grayscale(45%) contrast(1.1) brightness(0.78)",
+              }}
+            />
+            {/* Bottom vignette */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 45%)",
+              pointerEvents: "none",
+            }} />
             <span
               style={{
+                position: "absolute",
+                bottom: "12px",
+                left: "14px",
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "10px",
+                fontSize: "9px",
                 letterSpacing: "0.2em",
-                color: "rgba(255,255,255,0.08)",
-                fontWeight: 400,
+                color: "rgba(255,255,255,0.35)",
+                fontWeight: 300,
                 textTransform: "uppercase",
               }}
             >
-              {label}
+              {plate.label}
             </span>
           </div>
         ))}
