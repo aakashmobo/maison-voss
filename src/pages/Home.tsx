@@ -182,6 +182,363 @@ function ProductCard({
   );
 }
 
+/* ─────────────────────────────────────────
+   SECTION 5 — LOOKBOOK STRIP
+───────────────────────────────────────── */
+const PLATES = ["PLATE 01", "PLATE 02", "PLATE 03", "PLATE 04", "PLATE 05", "PLATE 06"];
+
+function LookbookStrip() {
+  return (
+    <section style={{ backgroundColor: "#000", padding: "80px 0" }}>
+      {/* Label */}
+      <div
+        style={{
+          textAlign: "center",
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 300,
+          fontSize: "10px",
+          letterSpacing: "0.4em",
+          color: "#9a9080",
+          textTransform: "uppercase",
+          marginBottom: "32px",
+        }}
+      >
+        LOOKBOOK — SS 2025
+      </div>
+
+      {/* Scrollable row */}
+      <div
+        className="lookbook-scroll"
+        style={{
+          display: "flex",
+          overflowX: "auto",
+          gap: "2px",
+          padding: "0 64px",
+        }}
+      >
+        {PLATES.map((label) => (
+          <div
+            key={label}
+            className="lookbook-card"
+            style={{
+              width: "280px",
+              flexShrink: 0,
+              aspectRatio: "2/3",
+              backgroundColor: "#111",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "10px",
+                letterSpacing: "0.2em",
+                color: "rgba(255,255,255,0.08)",
+                fontWeight: 400,
+                textTransform: "uppercase",
+              }}
+            >
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Caption */}
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: "16px",
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 300,
+          fontSize: "10px",
+          letterSpacing: "0.2em",
+          color: "#9a9080",
+        }}
+      >
+        Scroll to explore →
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────
+   SECTION 6 — NEWSLETTER
+───────────────────────────────────────── */
+function NewsletterSection() {
+  const [email, setEmail] = useState("");
+  const [inputFocused, setInputFocused] = useState(false);
+  const [btnHover, setBtnHover] = useState(false);
+
+  return (
+    <section
+      style={{
+        backgroundColor: "#0d0d0d",
+        borderTop: "1px solid #1a1a1a",
+        padding: "80px 64px",
+      }}
+    >
+      <div style={{ display: "flex", gap: "0", alignItems: "flex-start" }}>
+        {/* LEFT */}
+        <div style={{ flex: "0 0 50%", paddingRight: "80px" }}>
+          <div
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "10px",
+              letterSpacing: "0.4em",
+              color: "#9a9080",
+              textTransform: "uppercase",
+              marginBottom: "16px",
+            }}
+          >
+            STAY CLOSE
+          </div>
+          <h3
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontWeight: 400,
+              fontStyle: "italic",
+              fontSize: "40px",
+              color: "#f5f0eb",
+              lineHeight: 1.2,
+              margin: 0,
+              marginBottom: "12px",
+            }}
+          >
+            Be first to know.
+          </h3>
+          <p
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "13px",
+              color: "#9a9080",
+              lineHeight: 1.7,
+              margin: 0,
+            }}
+          >
+            New arrivals, atelier stories, and invitations to private events.{" "}
+            Nothing more.
+          </p>
+        </div>
+
+        {/* RIGHT */}
+        <div style={{ flex: "0 0 50%", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "38px" }}>
+          {/* Inline form */}
+          <div style={{ display: "flex", gap: "0" }}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onFocus={() => setInputFocused(true)}
+              onBlur={() => setInputFocused(false)}
+              placeholder="Your email address"
+              style={{
+                flex: 1,
+                background: "transparent",
+                border: "none",
+                borderBottom: `1px solid ${inputFocused ? "#f5f0eb" : "#333"}`,
+                color: "#f5f0eb",
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 300,
+                fontSize: "14px",
+                padding: "12px 0",
+                outline: "none",
+                transition: "border-bottom-color 0.2s",
+              }}
+            />
+            <button
+              onMouseEnter={() => setBtnHover(true)}
+              onMouseLeave={() => setBtnHover(false)}
+              style={{
+                background: btnHover ? "#f5f0eb" : "#aaff4d",
+                color: "#000",
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "11px",
+                letterSpacing: "0.2em",
+                padding: "12px 24px",
+                borderRadius: 0,
+                border: "none",
+                cursor: "pointer",
+                transition: "background 0.2s",
+                whiteSpace: "nowrap",
+              }}
+            >
+              JOIN →
+            </button>
+          </div>
+
+          {/* Fine print */}
+          <div
+            style={{
+              marginTop: "12px",
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "10px",
+              color: "#9a9080",
+              letterSpacing: "0.04em",
+            }}
+          >
+            We send four emails per year. That's it.
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────
+   SECTION 7 — FOOTER
+───────────────────────────────────────── */
+const FOOTER_COLS = [
+  {
+    label: "COLLECTION",
+    links: ["The Silence — SS 2025", "Archive", "Bespoke", "Gift Cards"],
+  },
+  {
+    label: "ATELIER",
+    links: ["Our Story", "Craft", "Sustainability", "Press"],
+  },
+  {
+    label: "CLIENT",
+    links: ["Sizing Guide", "Care Instructions", "Returns", "Contact"],
+  },
+];
+
+function SiteFooter() {
+  return (
+    <footer
+      style={{
+        backgroundColor: "#000",
+        borderTop: "1px solid #1a1a1a",
+        padding: "48px 64px",
+      }}
+    >
+      {/* Four columns */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "0" }}>
+        {/* Col 1 — Wordmark */}
+        <div>
+          <div
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontWeight: 400,
+              fontStyle: "italic",
+              fontSize: "18px",
+              color: "#f5f0eb",
+            }}
+          >
+            Maison Voss
+          </div>
+          <div
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "10px",
+              color: "#9a9080",
+              letterSpacing: "0.06em",
+              marginTop: "8px",
+            }}
+          >
+            Paris · Est. 2008
+          </div>
+          <div style={{ marginTop: "24px", display: "flex", gap: "12px" }}>
+            {["IG", "TK", "PT"].map((s) => (
+              <span
+                key={s}
+                className="social-link"
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: 300,
+                  fontSize: "11px",
+                  letterSpacing: "0.2em",
+                }}
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Cols 2–4 — Link columns */}
+        {FOOTER_COLS.map((col) => (
+          <div key={col.label}>
+            <div
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "9px",
+                letterSpacing: "0.3em",
+                color: "#9a9080",
+                textTransform: "uppercase",
+                marginBottom: "16px",
+              }}
+            >
+              {col.label}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {col.links.map((link) => (
+                <span
+                  key={link}
+                  className="footer-link"
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: 300,
+                    fontSize: "12px",
+                    lineHeight: 2.2,
+                  }}
+                >
+                  {link}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom bar */}
+      <div
+        style={{
+          borderTop: "1px solid #1a1a1a",
+          marginTop: "48px",
+          paddingTop: "24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 300,
+            fontSize: "10px",
+            color: "#9a9080",
+          }}
+        >
+          © 2025 Maison Voss. All rights reserved.
+        </span>
+        <span
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 300,
+            fontSize: "10px",
+            color: "#9a9080",
+          }}
+        >
+          Built by MOBO ·{" "}
+          <span style={{ color: "#aaff4d" }}>Powered by VibX AI</span>
+        </span>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────
+   HOME PAGE
+───────────────────────────────────────── */
 export function Home() {
   const [hoverCta, setHoverCta] = useState(false);
   const [hoverViewAll, setHoverViewAll] = useState(false);
@@ -850,118 +1207,56 @@ export function Home() {
         </div>
       </section>
 
-      {/* ── FOOTER TICKER ── */}
-      <div
-        style={{
-          borderTop: "1px solid #1a1a1a",
-          backgroundColor: "#000",
-          height: "40px",
-          display: "flex",
-          alignItems: "center",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            whiteSpace: "nowrap",
-            animation: "ticker 40s linear infinite",
-          }}
-        >
-          {[0, 1].map((i) => (
-            <span
-              key={i}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "11px",
-                letterSpacing: "0.22em",
-                color: "#2a2a2a",
-                fontWeight: 300,
-              }}
-            >
-              {Array.from({ length: 8 }).map(() => TICKER_TEXT).join("")}
-            </span>
-          ))}
-        </div>
-      </div>
+      {/* ════════════════════════════════════
+          SECTION 5 — LOOKBOOK STRIP
+      ════════════════════════════════════ */}
+      <LookbookStrip />
 
-      {/* FOOTER */}
-      <footer
-        style={{
-          backgroundColor: "#000",
-          borderTop: "1px solid #1a1a1a",
-          padding: "48px 64px",
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontWeight: 400,
-              fontSize: "13px",
-              letterSpacing: "0.25em",
-              color: "#f5f0eb",
-              marginBottom: "8px",
-            }}
-          >
-            MAISON VOSS
-          </div>
-          <div
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 300,
-              fontSize: "10px",
-              letterSpacing: "0.15em",
-              color: "#3a3a3a",
-            }}
-          >
-            © 2026 MAISON VOSS — PARIS. ALL RIGHTS RESERVED.
-          </div>
-        </div>
-        <div style={{ display: "flex", gap: "40px" }}>
-          {["Privacy", "Terms", "Stockists", "Press"].map((link) => (
-            <span
-              key={link}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontWeight: 300,
-                fontSize: "10px",
-                letterSpacing: "0.18em",
-                color: "#3a3a3a",
-                cursor: "pointer",
-                textTransform: "uppercase",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#9a9080")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#3a3a3a")}
-            >
-              {link}
-            </span>
-          ))}
-        </div>
-        <div
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontWeight: 300,
-            fontSize: "10px",
-            letterSpacing: "0.1em",
-            color: "#3a3a3a",
-            textAlign: "right",
-          }}
-        >
-          <div>Built by MOBO</div>
-          <div style={{ marginTop: "4px", color: "#2a2a2a" }}>Paris · New York · Tokyo</div>
-        </div>
-      </footer>
+      {/* ════════════════════════════════════
+          SECTION 6 — NEWSLETTER
+      ════════════════════════════════════ */}
+      <NewsletterSection />
+
+      {/* ════════════════════════════════════
+          SECTION 7 — FOOTER
+      ════════════════════════════════════ */}
+      <SiteFooter />
 
       {/* Global keyframes */}
       <style>{`
         @keyframes ticker {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        .lookbook-scroll::-webkit-scrollbar {
+          display: none;
+        }
+        .lookbook-scroll {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .lookbook-card {
+          border: 1px solid #1a1a1a;
+          transition: border-color 0.25s;
+        }
+        .lookbook-card:hover {
+          border-color: #333;
+        }
+        .footer-link {
+          transition: color 0.2s;
+          cursor: pointer;
+          color: #9a9080;
+        }
+        .footer-link:hover {
+          color: #f5f0eb;
+        }
+        .social-link {
+          transition: color 0.2s;
+          cursor: pointer;
+          color: #9a9080;
+        }
+        .social-link:hover {
+          color: #f5f0eb;
         }
       `}</style>
     </div>
