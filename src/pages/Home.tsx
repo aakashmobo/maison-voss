@@ -584,8 +584,7 @@ export function Home() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "28px 48px 28px 48px",
-          borderBottom: "1px solid #141414",
+          padding: "28px 48px",
           zIndex: 20,
           position: "relative",
         }}>
@@ -649,287 +648,171 @@ export function Home() {
         </nav>
 
         {/* ── HERO BODY ── */}
-        <div style={{ display: "flex", flex: 1, minHeight: "calc(100vh - 68px - 40px)" }}>
+        <div style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "center",
+          padding: "40px 48px 60px 48px",
+          position: "relative",
+        }}>
 
-          {/* LEFT COLUMN */}
-          <div style={{
-            flex: "1 1 55%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            padding: "64px 40px 56px 48px",
-            borderRight: "1px solid #141414",
-          }}>
-
-            {/* Top meta row */}
-            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-              <div style={{ width: "28px", height: "1px", backgroundColor: "#2a2a2a" }} />
-              <span style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "9px",
-                letterSpacing: "0.38em",
-                color: "#4a4540",
-                fontWeight: 300,
-                textTransform: "uppercase",
-              }}>
-                THE VOID COLLECTION — AW 2025
-              </span>
-            </div>
-
-            {/* Display typography block */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "48px", paddingBottom: "48px" }}>
-
-              {/* "THE NEW" — thin, wide tracking */}
-              <div style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontWeight: 300,
-                fontSize: "clamp(22px, 3.2vw, 52px)",
-                color: "#f5f0eb",
-                letterSpacing: "0.55em",
-                lineHeight: 1,
-                opacity: 0.28,
-                marginBottom: "-6px",
-                paddingLeft: "4px",
-              }}>
-                THE NEW
-              </div>
-
-              {/* "SILENCE" — massive italic, with rule slicing through */}
-              <div style={{ position: "relative", display: "inline-block" }}>
-                <div style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
-                  fontWeight: 900,
-                  fontStyle: "italic",
-                  fontSize: "clamp(96px, 16vw, 200px)",
-                  color: "#f5f0eb",
-                  letterSpacing: "-0.03em",
-                  lineHeight: 0.85,
-                  userSelect: "none",
-                  position: "relative",
-                  zIndex: 1,
-                  whiteSpace: "nowrap",
-                }}>
-                  SILENCE
-                </div>
-                {/* Architectural rule cutting through letters */}
-                <div style={{
-                  position: "absolute",
-                  top: "52%",
-                  left: "-48px",
-                  right: "-60vw",
-                  height: "1px",
-                  backgroundColor: "#2e2e2e",
-                  zIndex: 2,
-                  pointerEvents: "none",
-                }} />
-              </div>
-
-              {/* Subline */}
-              <div style={{ marginTop: "52px", display: "flex", alignItems: "center", gap: "20px" }}>
-                <div style={{ width: "24px", height: "1px", backgroundColor: "#2a2a2a" }} />
-                <span style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "10px",
-                  letterSpacing: "0.36em",
-                  color: "#9a9080",
-                  fontWeight: 300,
-                  textTransform: "uppercase",
-                }}>
-                  AW 2025 COLLECTION — PARIS
-                </span>
-              </div>
-
-              {/* CTA */}
-              <div style={{ marginTop: "40px" }}>
-                <button
-                  onMouseEnter={() => setHoverCta(true)}
-                  onMouseLeave={() => setHoverCta(false)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                    cursor: "pointer",
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "12px",
-                    letterSpacing: "0.18em",
-                    color: hoverCta ? "#aaff4d" : "#f5f0eb",
-                    textDecoration: "underline",
-                    textDecorationColor: hoverCta ? "#aaff4d" : "#2a2a2a",
-                    textDecorationThickness: "1px",
-                    textUnderlineOffset: "7px",
-                    transition: "color 0.3s, text-decoration-color 0.3s",
-                    fontWeight: 300,
-                  }}
-                >
-                  Explore Collection →
-                </button>
-              </div>
-            </div>
-
-            {/* Bottom meta row */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <span style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "9px",
-                letterSpacing: "0.28em",
-                color: "#2e2e2e",
-                fontWeight: 300,
-                textTransform: "uppercase",
-              }}>
-                LIMITED EDITION — 120 PIECES
-              </span>
-              <span style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontStyle: "italic",
-                fontSize: "11px",
-                color: "#2e2e2e",
-                fontWeight: 300,
-              }}>
-                Since 2008
-              </span>
-            </div>
+          {/* Top eyebrow */}
+          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "40px" }}>
+            <div style={{ width: "28px", height: "1px", backgroundColor: "#2a2a2a" }} />
+            <span style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "9px",
+              letterSpacing: "0.38em",
+              color: "#4a4540",
+              fontWeight: 300,
+              textTransform: "uppercase",
+            }}>
+              THE VOID COLLECTION — AW 2025
+            </span>
           </div>
 
-          {/* RIGHT COLUMN — Full-bleed portrait */}
+          {/* "THE NEW" — thin, wide tracking */}
           <div style={{
-            flex: "0 0 45%",
-            position: "relative",
-            overflow: "hidden",
-            backgroundColor: "#060606",
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontWeight: 300,
+            fontSize: "clamp(22px, 3.2vw, 52px)",
+            color: "#f5f0eb",
+            letterSpacing: "0.55em",
+            lineHeight: 1,
+            opacity: 0.28,
+            marginBottom: "-6px",
+            paddingLeft: "4px",
           }}>
-            {/* Portrait image */}
+            THE NEW
+          </div>
+
+          {/* "SILENCE" — massive italic, with rule slicing through */}
+          <div style={{ position: "relative", width: "100%" }}>
+            <div style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontWeight: 900,
+              fontStyle: "italic",
+              fontSize: "clamp(96px, 16vw, 200px)",
+              color: "#f5f0eb",
+              letterSpacing: "-0.03em",
+              lineHeight: 0.85,
+              userSelect: "none",
+              position: "relative",
+              zIndex: 1,
+              whiteSpace: "nowrap",
+            }}>
+              SILENCE
+            </div>
+            {/* Thin rule slicing through the letterforms */}
+            <div style={{
+              position: "absolute",
+              top: "52%",
+              left: "-48px",
+              right: "-48px",
+              height: "1px",
+              backgroundColor: "#2e2e2e",
+              zIndex: 2,
+              pointerEvents: "none",
+            }} />
+          </div>
+
+          {/* Portrait image — editorial photo below headline */}
+          <div style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            width: "38%",
+            height: "100%",
+            overflow: "hidden",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}>
             <img
               src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&auto=format&fit=crop&q=80"
-              alt="Editorial fashion — Maison Voss AW 2025"
+              alt="Editorial — Maison Voss AW 2025"
               style={{
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
                 objectPosition: "center 12%",
-                filter: "contrast(1.12) brightness(0.82) saturate(1.1)",
-                display: "block",
+                filter: "contrast(1.08) brightness(0.6) saturate(0.9)",
               }}
             />
-
-            {/* Vignette overlays */}
+            {/* Left fade to black */}
             <div style={{
               position: "absolute",
-              inset: 0,
-              background: "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.7) 100%)",
+              top: 0, bottom: 0, left: 0,
+              width: "60%",
+              background: "linear-gradient(to right, #000 0%, transparent 100%)",
               pointerEvents: "none",
             }} />
-            {/* Left edge fade — blends into left column */}
-            <div style={{
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              left: 0,
-              width: "80px",
-              background: "linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%)",
-              pointerEvents: "none",
-            }} />
-
-            {/* Film grain SVG overlay */}
-            <svg
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                opacity: 0.04,
-                pointerEvents: "none",
-                mixBlendMode: "screen",
-              }}
-            >
-              <filter id="grain">
-                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
-                <feColorMatrix type="saturate" values="0" />
-              </filter>
-              <rect width="100%" height="100%" filter="url(#grain)" />
-            </svg>
-
-            {/* "NOW ARRIVING" pill — top right */}
+            {/* "NOW ARRIVING" pill */}
             <div style={{
               position: "absolute",
               top: "32px",
-              right: "24px",
+              right: "32px",
               backgroundColor: "#aaff4d",
               borderRadius: "999px",
               padding: "7px 18px",
               display: "flex",
               alignItems: "center",
               gap: "7px",
-              zIndex: 10,
+              pointerEvents: "auto",
             }}>
-              <div style={{
-                width: "5px",
-                height: "5px",
-                borderRadius: "50%",
-                backgroundColor: "#000",
-                flexShrink: 0,
-              }} />
+              <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "#000", flexShrink: 0 }} />
               <span style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "9px",
                 letterSpacing: "0.22em",
                 color: "#000",
                 fontWeight: 600,
-                whiteSpace: "nowrap",
                 textTransform: "uppercase",
               }}>
                 Now Arriving
               </span>
             </div>
+          </div>
 
-            {/* Bottom-left photo credit */}
-            <div style={{
-              position: "absolute",
-              bottom: "20px",
-              left: "20px",
-              zIndex: 10,
-              display: "flex",
-              flexDirection: "column",
-              gap: "4px",
-            }}>
+          {/* Bottom meta — subline + CTA */}
+          <div style={{ marginTop: "52px", zIndex: 1, position: "relative" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "32px" }}>
+              <div style={{ width: "24px", height: "1px", backgroundColor: "#2a2a2a" }} />
               <span style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "8px",
-                letterSpacing: "0.22em",
-                color: "rgba(245,240,235,0.3)",
+                fontSize: "10px",
+                letterSpacing: "0.36em",
+                color: "#9a9080",
                 fontWeight: 300,
                 textTransform: "uppercase",
               }}>
-                PHT. LENA VOGT
-              </span>
-              <span style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "8px",
-                letterSpacing: "0.22em",
-                color: "rgba(245,240,235,0.18)",
-                fontWeight: 300,
-                textTransform: "uppercase",
-              }}>
-                PARIS — 2025
+                AW 2025 COLLECTION — PARIS
               </span>
             </div>
 
-            {/* Vertical right-edge label */}
-            <div style={{
-              position: "absolute",
-              right: "16px",
-              bottom: "80px",
-              transform: "rotate(90deg)",
-              transformOrigin: "right bottom",
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "8px",
-              letterSpacing: "0.3em",
-              color: "rgba(245,240,235,0.15)",
-              fontWeight: 300,
-              whiteSpace: "nowrap",
-              textTransform: "uppercase",
-            }}>
-              MAISON VOSS · AW 2025
-            </div>
+            <button
+              onMouseEnter={() => setHoverCta(true)}
+              onMouseLeave={() => setHoverCta(false)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "12px",
+                letterSpacing: "0.18em",
+                color: hoverCta ? "#aaff4d" : "#f5f0eb",
+                textDecoration: "underline",
+                textDecorationColor: hoverCta ? "#aaff4d" : "#2a2a2a",
+                textDecorationThickness: "1px",
+                textUnderlineOffset: "7px",
+                transition: "color 0.3s, text-decoration-color 0.3s",
+                fontWeight: 300,
+              }}
+            >
+              Explore Collection →
+            </button>
           </div>
         </div>
 
