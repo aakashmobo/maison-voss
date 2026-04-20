@@ -1,347 +1,864 @@
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 
 const TICKER_TEXT = "CRAFTED IN PARIS \u00B7 WORN BY FEW \u00B7 MADE TO LAST \u00B7 AUTUMN SILENCE \u00B7 ";
 
-export function Home() {
-  const [hoverCta, setHoverCta] = useState(false);
+const PRODUCTS = [
+  {
+    id: 1,
+    look: "LOOK 01",
+    name: "Atelier Coat",
+    material: "Wool Crepe, Felted — Made in Lyon",
+    price: "€ 3,200",
+    featured: true,
+    aspectRatio: "3/4",
+    col: "auto",
+    imgSrc: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 2,
+    look: "LOOK 02",
+    name: "Column Dress",
+    material: "Silk Organza, Bias-Cut — Made in Como",
+    price: "€ 2,450",
+    featured: false,
+    aspectRatio: "3/4",
+    imgSrc: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 3,
+    look: "LOOK 03",
+    name: "Structured Blazer",
+    material: "Cashmere Blend, Unlined — Milan",
+    price: "€ 1,890",
+    featured: false,
+    aspectRatio: "3/4",
+    imgSrc: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 4,
+    look: "LOOK 04",
+    name: "Wide-Leg Trousers",
+    material: "Heavy Linen, Chalk White — Paris",
+    price: "€ 980",
+    featured: false,
+    aspectRatio: "4/3",
+    wide: true,
+    imgSrc: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 5,
+    look: "LOOK 05",
+    name: "Draped Blouse",
+    material: "Washed Satin, Ivory — Lyon",
+    price: "€ 720",
+    featured: false,
+    aspectRatio: "3/4",
+    imgSrc: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&auto=format&fit=crop&q=80",
+  },
+];
+
+function ProductCard({
+  product,
+  wide = false,
+}: {
+  product: (typeof PRODUCTS)[0];
+  wide?: boolean;
+}) {
+  const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      className="relative w-full min-h-screen flex flex-col"
-      style={{ backgroundColor: "#000000", fontFamily: "'DM Sans', sans-serif" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundColor: "#0d0d0d",
+        overflow: "hidden",
+        position: "relative",
+        cursor: "pointer",
+        gridColumn: wide ? "span 2" : undefined,
+      }}
     >
-      {/* ── NAV BAR ── */}
-      <nav
-        className="flex items-center justify-between px-10 pt-8 pb-0 z-20"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}
+      {/* Image zone */}
+      <div
+        style={{
+          aspectRatio: wide ? "16/7" : "3/4",
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: hovered ? "#222" : "#1a1a1a",
+          transition: "background-color 0.3s",
+        }}
       >
+        <img
+          src={product.imgSrc}
+          alt={product.name}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center top",
+            filter: "grayscale(40%) contrast(1.05) brightness(0.8)",
+            opacity: hovered ? 0.9 : 0.75,
+            transition: "opacity 0.35s, transform 0.5s",
+            transform: hovered ? "scale(1.03)" : "scale(1)",
+          }}
+        />
+        {/* Look label over image */}
         <span
+          style={{
+            position: "absolute",
+            bottom: "12px",
+            right: "12px",
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "9px",
+            letterSpacing: "0.2em",
+            color: "rgba(255,255,255,0.25)",
+            fontWeight: 300,
+          }}
+        >
+          {product.look}
+        </span>
+      </div>
+
+      {/* Featured badge */}
+      {product.featured && (
+        <div
+          style={{
+            position: "absolute",
+            top: "16px",
+            left: "16px",
+            backgroundColor: "#aaff4d",
+            color: "#000",
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "9px",
+            fontWeight: 700,
+            letterSpacing: "0.2em",
+            padding: "3px 8px",
+            borderRadius: 0,
+          }}
+        >
+          NEW
+        </div>
+      )}
+
+      {/* Card info */}
+      <div style={{ padding: "16px 0 0 0" }}>
+        <div
           style={{
             fontFamily: "'Playfair Display', Georgia, serif",
-            color: "#f5f0eb",
-            fontSize: "13px",
-            letterSpacing: "0.25em",
             fontWeight: 400,
+            fontStyle: "italic",
+            fontSize: "18px",
+            color: "#f5f0eb",
+            lineHeight: 1.2,
+            marginBottom: "6px",
           }}
         >
-          MAISON VOSS
-        </span>
-
-        <div className="flex items-center gap-10">
-          {["Collections", "Atelier", "Lookbook", "Contact"].map((item) => (
-            <span
-              key={item}
-              style={{
-                color: "#9a9080",
-                fontSize: "11px",
-                letterSpacing: "0.18em",
-                fontWeight: 300,
-                cursor: "pointer",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#f5f0eb")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#9a9080")}
-            >
-              {item.toUpperCase()}
-            </span>
-          ))}
+          {product.name}
         </div>
-
-        <span
+        <div
           style={{
-            color: "#9a9080",
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 300,
             fontSize: "11px",
-            letterSpacing: "0.18em",
+            color: "#9a9080",
+            letterSpacing: "0.04em",
+            marginBottom: "8px",
           }}
         >
-          SS 2025
-        </span>
-      </nav>
-
-      {/* ── MAIN CONTENT ── */}
-      <div className="flex flex-1 items-stretch" style={{ minHeight: "calc(100vh - 120px)" }}>
-        {/* LEFT COLUMN */}
+          {product.material}
+        </div>
         <div
-          className="flex flex-col justify-between"
-          style={{ flex: "1 1 58%", padding: "48px 48px 48px 40px" }}
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 400,
+            fontSize: "14px",
+            color: "#f5f0eb",
+          }}
         >
-          {/* Top meta label */}
-          <div style={{ marginBottom: "0px" }}>
-            <span
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "11px",
-                letterSpacing: "0.2em",
-                color: "#9a9080",
-                fontWeight: 300,
-              }}
-            >
-              · SS 2025 — PARIS ATELIER
-            </span>
+          {product.price}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function Home() {
+  const [hoverCta, setHoverCta] = useState(false);
+  const [hoverViewAll, setHoverViewAll] = useState(false);
+
+  return (
+    <div
+      style={{ backgroundColor: "#000000", fontFamily: "'DM Sans', sans-serif" }}
+    >
+      {/* ════════════════════════════════════
+          SECTION 1 — HERO
+      ════════════════════════════════════ */}
+      <div className="relative w-full min-h-screen flex flex-col">
+        {/* ── NAV BAR ── */}
+        <nav className="flex items-center justify-between px-10 pt-8 pb-0 z-20">
+          <span
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              color: "#f5f0eb",
+              fontSize: "13px",
+              letterSpacing: "0.25em",
+              fontWeight: 400,
+            }}
+          >
+            MAISON VOSS
+          </span>
+
+          <div className="flex items-center gap-10">
+            {["Collections", "Atelier", "Lookbook", "Contact"].map((item) => (
+              <span
+                key={item}
+                style={{
+                  color: "#9a9080",
+                  fontSize: "11px",
+                  letterSpacing: "0.18em",
+                  fontWeight: 300,
+                  cursor: "pointer",
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#f5f0eb")}
+                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#9a9080")}
+              >
+                {item.toUpperCase()}
+              </span>
+            ))}
           </div>
 
-          {/* THE NEW + SILENCE BLOCK */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", marginTop: "32px" }}>
-            {/* THE NEW */}
-            <div
-              style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontWeight: 100,
-                fontSize: "clamp(36px, 5vw, 72px)",
-                color: "#f5f0eb",
-                letterSpacing: "0.3em",
-                lineHeight: 1,
-                opacity: 0.55,
-                marginBottom: "4px",
-              }}
-            >
-              THE NEW
-            </div>
+          <span style={{ color: "#9a9080", fontSize: "11px", letterSpacing: "0.18em" }}>
+            SS 2025
+          </span>
+        </nav>
 
-            {/* SILENCE — massive italic with horizontal rule */}
-            <div style={{ position: "relative", lineHeight: 0.88, marginBottom: "0px" }}>
-              <div
-                style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
-                  fontWeight: 900,
-                  fontStyle: "italic",
-                  fontSize: "clamp(80px, 13vw, 160px)",
-                  color: "#f5f0eb",
-                  letterSpacing: "-0.02em",
-                  lineHeight: 0.88,
-                  userSelect: "none",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
-                SILENCE
-              </div>
-
-              {/* Horizontal rule cutting through the middle of the letters */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "54%",
-                  left: "-40px",
-                  right: "-200px",
-                  height: "1px",
-                  backgroundColor: "#3a3a3a",
-                  zIndex: 2,
-                  pointerEvents: "none",
-                }}
-              />
-            </div>
-
-            {/* Season label */}
-            <div style={{ marginTop: "40px" }}>
+        {/* ── HERO BODY ── */}
+        <div className="flex flex-1 items-stretch" style={{ minHeight: "calc(100vh - 120px)" }}>
+          {/* LEFT COLUMN */}
+          <div
+            className="flex flex-col justify-between"
+            style={{ flex: "1 1 58%", padding: "48px 48px 48px 40px" }}
+          >
+            <div>
               <span
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "11px",
-                  letterSpacing: "0.32em",
+                  letterSpacing: "0.2em",
                   color: "#9a9080",
                   fontWeight: 300,
-                  textTransform: "uppercase",
                 }}
               >
-                SS 2025 COLLECTION — PARIS
+                · SS 2025 — PARIS ATELIER
               </span>
             </div>
 
-            {/* CTA */}
-            <div style={{ marginTop: "32px" }}>
-              <button
-                onMouseEnter={() => setHoverCta(true)}
-                onMouseLeave={() => setHoverCta(false)}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", marginTop: "32px" }}>
+              <div
                 style={{
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "13px",
-                  letterSpacing: "0.15em",
-                  color: hoverCta ? "#aaff4d" : "#f5f0eb",
-                  textDecoration: "underline",
-                  textDecorationColor: hoverCta ? "#aaff4d" : "#3a3a3a",
-                  textDecorationThickness: "1px",
-                  textUnderlineOffset: "6px",
-                  transition: "color 0.25s, text-decoration-color 0.25s",
-                  fontWeight: 300,
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontWeight: 100,
+                  fontSize: "clamp(36px, 5vw, 72px)",
+                  color: "#f5f0eb",
+                  letterSpacing: "0.3em",
+                  lineHeight: 1,
+                  opacity: 0.55,
+                  marginBottom: "4px",
                 }}
               >
-                Explore Collection →
-              </button>
-            </div>
-          </div>
+                THE NEW
+              </div>
 
-          {/* Bottom — small edition note */}
-          <div style={{ paddingTop: "24px" }}>
-            <span
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "10px",
-                letterSpacing: "0.2em",
-                color: "#3a3a3a",
-                fontWeight: 300,
-              }}
-            >
-              LIMITED EDITION — 120 PIECES
-            </span>
-          </div>
-        </div>
+              <div style={{ position: "relative", lineHeight: 0.88 }}>
+                <div
+                  style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontWeight: 900,
+                    fontStyle: "italic",
+                    fontSize: "clamp(80px, 13vw, 160px)",
+                    color: "#f5f0eb",
+                    letterSpacing: "-0.02em",
+                    lineHeight: 0.88,
+                    userSelect: "none",
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                >
+                  SILENCE
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "54%",
+                    left: "-40px",
+                    right: "-200px",
+                    height: "1px",
+                    backgroundColor: "#3a3a3a",
+                    zIndex: 2,
+                    pointerEvents: "none",
+                  }}
+                />
+              </div>
 
-        {/* RIGHT COLUMN — Editorial Portrait */}
-        <div
-          style={{
-            flex: "0 0 38%",
-            padding: "32px 40px 32px 0",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              maxWidth: "420px",
-              height: "100%",
-              minHeight: "520px",
-            }}
-          >
-            {/* Portrait — Editorial Fashion Photo */}
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                backgroundColor: "#0a0a0a",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              {/* Real editorial fashion photograph */}
-              <img
-                src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=80"
-                alt="Editorial fashion — model in structured black coat"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center 15%",
-                  filter: "grayscale(30%) contrast(1.08) brightness(0.85)",
-                  mixBlendMode: "luminosity",
-                }}
-              />
+              <div style={{ marginTop: "40px" }}>
+                <span
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "11px",
+                    letterSpacing: "0.32em",
+                    color: "#9a9080",
+                    fontWeight: 300,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  SS 2025 COLLECTION — PARIS
+                </span>
+              </div>
 
-              {/* Dark overlay vignette — editorial mood */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.15) 100%)",
-                  pointerEvents: "none",
-                }}
-              />
-
-              {/* Film grain texture overlay */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  opacity: 0.04,
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-                  backgroundSize: "128px 128px",
-                  pointerEvents: "none",
-                  mixBlendMode: "overlay",
-                }}
-              />
-
-              {/* Photographer meta — bottom left inside photo */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "16px",
-                  left: "16px",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "9px",
-                  letterSpacing: "0.2em",
-                  color: "#9a9080",
-                  opacity: 0.6,
-                  zIndex: 3,
-                }}
-              >
-                PHT. LENA VOGT — PARIS 2025
+              <div style={{ marginTop: "32px" }}>
+                <button
+                  onMouseEnter={() => setHoverCta(true)}
+                  onMouseLeave={() => setHoverCta(false)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "13px",
+                    letterSpacing: "0.15em",
+                    color: hoverCta ? "#aaff4d" : "#f5f0eb",
+                    textDecoration: "underline",
+                    textDecorationColor: hoverCta ? "#aaff4d" : "#3a3a3a",
+                    textDecorationThickness: "1px",
+                    textUnderlineOffset: "6px",
+                    transition: "color 0.25s, text-decoration-color 0.25s",
+                    fontWeight: 300,
+                  }}
+                >
+                  Explore Collection →
+                </button>
               </div>
             </div>
 
-            {/* Floating NOW ARRIVING pill */}
-            <div
-              style={{
-                position: "absolute",
-                top: "28px",
-                right: "-16px",
-                backgroundColor: "#aaff4d",
-                borderRadius: "999px",
-                padding: "6px 16px",
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-              }}
-            >
-              <div
-                style={{
-                  width: "5px",
-                  height: "5px",
-                  borderRadius: "50%",
-                  backgroundColor: "#000",
-                  flexShrink: 0,
-                }}
-              />
+            <div style={{ paddingTop: "24px" }}>
               <span
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "10px",
-                  letterSpacing: "0.18em",
-                  color: "#000",
-                  fontWeight: 500,
+                  letterSpacing: "0.2em",
+                  color: "#3a3a3a",
+                  fontWeight: 300,
+                }}
+              >
+                LIMITED EDITION — 120 PIECES
+              </span>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN — Portrait */}
+          <div
+            style={{
+              flex: "0 0 38%",
+              padding: "32px 40px 32px 0",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-end",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                maxWidth: "420px",
+                height: "100%",
+                minHeight: "520px",
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: "#0a0a0a",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=80"
+                  alt="Editorial fashion — model in structured black coat"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center 15%",
+                    filter: "grayscale(30%) contrast(1.08) brightness(0.85)",
+                    mixBlendMode: "luminosity",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.15) 100%)",
+                    pointerEvents: "none",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "16px",
+                    left: "16px",
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "9px",
+                    letterSpacing: "0.2em",
+                    color: "#9a9080",
+                    opacity: 0.6,
+                    zIndex: 3,
+                  }}
+                >
+                  PHT. LENA VOGT — PARIS 2025
+                </div>
+              </div>
+
+              <div
+                style={{
+                  position: "absolute",
+                  top: "28px",
+                  right: "-16px",
+                  backgroundColor: "#aaff4d",
+                  borderRadius: "999px",
+                  padding: "6px 16px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "5px",
+                    height: "5px",
+                    borderRadius: "50%",
+                    backgroundColor: "#000",
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "10px",
+                    letterSpacing: "0.18em",
+                    color: "#000",
+                    fontWeight: 500,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  NOW ARRIVING
+                </span>
+              </div>
+
+              <div
+                style={{
+                  position: "absolute",
+                  right: "-32px",
+                  top: "50%",
+                  transform: "translateY(-50%) rotate(90deg)",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "9px",
+                  letterSpacing: "0.25em",
+                  color: "#3a3a3a",
                   whiteSpace: "nowrap",
                 }}
               >
-                NOW ARRIVING
-              </span>
+                MAISON VOSS · PARIS
+              </div>
             </div>
+          </div>
+        </div>
 
-            {/* Side vertical text */}
-            <div
-              style={{
-                position: "absolute",
-                right: "-32px",
-                top: "50%",
-                transform: "translateY(-50%) rotate(90deg)",
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "9px",
-                letterSpacing: "0.25em",
-                color: "#3a3a3a",
-                whiteSpace: "nowrap",
-              }}
-            >
-              MAISON VOSS · PARIS
-            </div>
+        {/* ── TICKER STRIP ── */}
+        <div
+          style={{
+            borderTop: "1px solid #1c1c1c",
+            backgroundColor: "#000",
+            height: "36px",
+            display: "flex",
+            alignItems: "center",
+            overflow: "hidden",
+            flexShrink: 0,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              whiteSpace: "nowrap",
+              animation: "ticker 40s linear infinite",
+            }}
+          >
+            {[0, 1].map((i) => (
+              <span
+                key={i}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "11px",
+                  letterSpacing: "0.22em",
+                  color: "#3a3a3a",
+                  fontWeight: 300,
+                }}
+              >
+                {Array.from({ length: 8 }).map(() => TICKER_TEXT).join("")}
+              </span>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* ── TICKER STRIP ── */}
+      {/* ════════════════════════════════════
+          SECTION 2 — COLLECTION GRID
+      ════════════════════════════════════ */}
+      <section style={{ backgroundColor: "#000", padding: "80px 64px" }}>
+        {/* Header row */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: "48px",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "10px",
+              letterSpacing: "0.4em",
+              color: "#9a9080",
+              textTransform: "uppercase",
+            }}
+          >
+            SS 2025 — THE SILENCE COLLECTION
+          </span>
+          <button
+            onMouseEnter={() => setHoverViewAll(true)}
+            onMouseLeave={() => setHoverViewAll(false)}
+            style={{
+              background: "none",
+              border: "none",
+              borderBottom: "1px solid #9a9080",
+              padding: "0 0 3px 0",
+              cursor: "pointer",
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "11px",
+              letterSpacing: "0.1em",
+              color: hoverViewAll ? "#f5f0eb" : "#9a9080",
+              transition: "color 0.2s",
+            }}
+          >
+            View All Pieces →
+          </button>
+        </div>
+
+        {/* Row 1: 3 columns — 1.4fr 1fr 1fr */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.4fr 1fr 1fr",
+            gap: "2px",
+            marginBottom: "2px",
+          }}
+        >
+          {PRODUCTS.slice(0, 3).map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+
+        {/* Row 2: wide card spans 2, last card 1 */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.4fr 1fr 1fr",
+            gap: "2px",
+          }}
+        >
+          {/* Wide card spans cols 1+2 */}
+          <div style={{ gridColumn: "span 2" }}>
+            <ProductCard key={PRODUCTS[3].id} product={PRODUCTS[3]} wide />
+          </div>
+          {/* Single card col 3 */}
+          <ProductCard key={PRODUCTS[4].id} product={PRODUCTS[4]} />
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════
+          SECTION 3 — EDITORIAL PULL QUOTE
+      ════════════════════════════════════ */}
+      <section
+        style={{
+          backgroundColor: "#000",
+          borderTop: "1px solid #1a1a1a",
+          borderBottom: "1px solid #1a1a1a",
+          padding: "120px 64px",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "800px",
+            margin: "0 auto",
+            textAlign: "center",
+          }}
+        >
+          {/* Label */}
+          <div
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "10px",
+              letterSpacing: "0.4em",
+              color: "#9a9080",
+              textTransform: "uppercase",
+              marginBottom: "32px",
+            }}
+          >
+            THE PHILOSOPHY
+          </div>
+
+          {/* Pull quote */}
+          <blockquote
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontWeight: 400,
+              fontStyle: "italic",
+              fontSize: "clamp(32px, 4vw, 52px)",
+              color: "#f5f0eb",
+              lineHeight: 1.2,
+              margin: 0,
+              marginBottom: "40px",
+            }}
+          >
+            "Silence is not the absence of sound. It is the{" "}
+            <em style={{ fontStyle: "normal", color: "#aaff4d" }}>presence</em>{" "}
+            of everything that matters."
+          </blockquote>
+
+          {/* Attribution */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
+            <div
+              style={{
+                width: "60px",
+                height: "1px",
+                backgroundColor: "#1a1a1a",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 300,
+                fontSize: "10px",
+                letterSpacing: "0.4em",
+                color: "#9a9080",
+                textTransform: "uppercase",
+              }}
+            >
+              MAISON VOSS — PARIS, 2025
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════
+          SECTION 4 — BRAND STORY
+      ════════════════════════════════════ */}
+      <section style={{ backgroundColor: "#000", padding: "100px 64px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "80px",
+          }}
+        >
+          {/* LEFT — Portrait image */}
+          <div style={{ flex: "0 0 42%" }}>
+            <div
+              style={{
+                width: "100%",
+                aspectRatio: "2/3",
+                backgroundColor: "#111",
+                border: "1px solid #1a1a1a",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&auto=format&fit=crop&q=80"
+                alt="Atelier Paris — Maison Voss workshop"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  filter: "grayscale(50%) contrast(1.06) brightness(0.75)",
+                }}
+              />
+              {/* Subtle dark overlay */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%)",
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
+            <div
+              style={{
+                marginTop: "12px",
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 300,
+                fontSize: "10px",
+                letterSpacing: "0.15em",
+                color: "#9a9080",
+              }}
+            >
+              Atelier, Paris 8ème — 2024
+            </div>
+          </div>
+
+          {/* RIGHT — Story copy */}
+          <div style={{ flex: "1 1 55%" }}>
+            {/* Label */}
+            <div
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 300,
+                fontSize: "10px",
+                letterSpacing: "0.4em",
+                color: "#9a9080",
+                textTransform: "uppercase",
+                marginBottom: "24px",
+              }}
+            >
+              OUR STORY
+            </div>
+
+            {/* Heading */}
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 700,
+                fontSize: "clamp(32px, 3.5vw, 48px)",
+                color: "#f5f0eb",
+                lineHeight: 1.1,
+                margin: 0,
+                marginBottom: "28px",
+              }}
+            >
+              Crafted in silence.{" "}
+              <span
+                style={{
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                }}
+              >
+                Worn with intention.
+              </span>
+            </h2>
+
+            {/* Body copy */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "40px" }}>
+              {[
+                "Founded in Paris in 2008, Maison Voss was built on a single belief: that true luxury is restraint.",
+                "Every piece in our collection is made by hand in our 8th arrondissement atelier, using only fabrics sourced from mills that have operated for over a century.",
+                "We make twelve pieces per season. No more.",
+              ].map((para, i) => (
+                <p
+                  key={i}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: 300,
+                    fontSize: "15px",
+                    color: "#9a9080",
+                    lineHeight: 1.8,
+                    margin: 0,
+                  }}
+                >
+                  {para}
+                </p>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div style={{ height: "1px", backgroundColor: "#1a1a1a", marginBottom: "40px" }} />
+
+            {/* Craft stats */}
+            <div style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
+              {[
+                { num: "12", label: "PIECES PER SEASON" },
+                { num: "47", label: "ARTISANS" },
+                { num: "16", label: "YEARS" },
+              ].map((stat, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "stretch" }}>
+                  <div style={{ paddingRight: i < 2 ? "40px" : "0", paddingLeft: i > 0 ? "40px" : "0" }}>
+                    <div
+                      style={{
+                        fontFamily: "'Playfair Display', Georgia, serif",
+                        fontWeight: 400,
+                        fontStyle: "italic",
+                        fontSize: "36px",
+                        color: "#f5f0eb",
+                        lineHeight: 1,
+                        marginBottom: "8px",
+                      }}
+                    >
+                      {stat.num}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontWeight: 300,
+                        fontSize: "9px",
+                        letterSpacing: "0.3em",
+                        color: "#9a9080",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {stat.label}
+                    </div>
+                  </div>
+                  {i < 2 && (
+                    <div
+                      style={{
+                        width: "1px",
+                        backgroundColor: "#1a1a1a",
+                        alignSelf: "stretch",
+                        flexShrink: 0,
+                      }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOOTER TICKER ── */}
       <div
         style={{
-          borderTop: "1px solid #1c1c1c",
+          borderTop: "1px solid #1a1a1a",
           backgroundColor: "#000",
-          height: "36px",
+          height: "40px",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
-          flexShrink: 0,
         }}
       >
         <div
@@ -351,7 +868,6 @@ export function Home() {
             animation: "ticker 40s linear infinite",
           }}
         >
-          {/* Duplicate for seamless loop */}
           {[0, 1].map((i) => (
             <span
               key={i}
@@ -359,20 +875,89 @@ export function Home() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "11px",
                 letterSpacing: "0.22em",
-                color: "#3a3a3a",
+                color: "#2a2a2a",
                 fontWeight: 300,
-                paddingRight: "0",
               }}
             >
-              {Array.from({ length: 8 })
-                .map(() => TICKER_TEXT)
-                .join("")}
+              {Array.from({ length: 8 }).map(() => TICKER_TEXT).join("")}
             </span>
           ))}
         </div>
       </div>
 
-      {/* CSS keyframes for ticker */}
+      {/* FOOTER */}
+      <footer
+        style={{
+          backgroundColor: "#000",
+          borderTop: "1px solid #1a1a1a",
+          padding: "48px 64px",
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+        }}
+      >
+        <div>
+          <div
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontWeight: 400,
+              fontSize: "13px",
+              letterSpacing: "0.25em",
+              color: "#f5f0eb",
+              marginBottom: "8px",
+            }}
+          >
+            MAISON VOSS
+          </div>
+          <div
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "10px",
+              letterSpacing: "0.15em",
+              color: "#3a3a3a",
+            }}
+          >
+            © 2026 MAISON VOSS — PARIS. ALL RIGHTS RESERVED.
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: "40px" }}>
+          {["Privacy", "Terms", "Stockists", "Press"].map((link) => (
+            <span
+              key={link}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 300,
+                fontSize: "10px",
+                letterSpacing: "0.18em",
+                color: "#3a3a3a",
+                cursor: "pointer",
+                textTransform: "uppercase",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#9a9080")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#3a3a3a")}
+            >
+              {link}
+            </span>
+          ))}
+        </div>
+        <div
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 300,
+            fontSize: "10px",
+            letterSpacing: "0.1em",
+            color: "#3a3a3a",
+            textAlign: "right",
+          }}
+        >
+          <div>Built by MOBO</div>
+          <div style={{ marginTop: "4px", color: "#2a2a2a" }}>Paris · New York · Tokyo</div>
+        </div>
+      </footer>
+
+      {/* Global keyframes */}
       <style>{`
         @keyframes ticker {
           0%   { transform: translateX(0); }

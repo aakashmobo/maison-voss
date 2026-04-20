@@ -32,7 +32,14 @@
 - Very slow ticker (40s per loop)
 - Lime green ONLY on the "NOW ARRIVING" badge and CTA hover state
 
+## Sections Built
+1. Hero — full-screen, editorial typography, portrait photo, ticker
+2. Collection Grid — asymmetric CSS grid (1.4fr 1fr 1fr), 2px gap, Unsplash product photos, hover states, lime NEW badge
+3. Pull Quote — centered editorial quote, lime accent on key word "presence", attribution rule
+4. Brand Story — two-col layout, atelier photo, body copy, stats (12 / 47 / 16), vertical rule dividers
+5. Footer — ticker repeat, copyright, MOBO credit
+
 ## Next Steps
-- Could add a second page for the collection grid
-- Could animate the horizontal rule on page load (scale-x from 0 to 1)
-- Could add a cursor-follower dot in lime green as the one signature motion element
+- Animate horizontal rule on page load (scale-x 0→1)
+- Add cursor-follower lime dot as signature motion element
+- Add individual product detail page with expanded editorial layout
