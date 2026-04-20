@@ -32,7 +32,7 @@ const PRODUCTS = [
     price: "€ 2,100",
     featured: false,
     aspectRatio: "3/4",
-    imgSrc: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&auto=format&fit=crop&q=80",
+    imgSrc: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&auto=format&fit=crop&q=80",
   },
   {
     id: 4,
