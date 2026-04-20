@@ -6,9 +6,9 @@ const PRODUCTS = [
   {
     id: 1,
     look: "LOOK 01",
-    name: "Atelier Coat",
-    material: "Wool Crepe, Felted — Made in Lyon",
-    price: "€ 3,200",
+    name: "Deconstructed Cocoon Coat",
+    material: "Bonded Wool Felt, Ash Grey — Antwerp",
+    price: "€ 4,800",
     featured: true,
     aspectRatio: "3/4",
     col: "auto",
@@ -17,9 +17,9 @@ const PRODUCTS = [
   {
     id: 2,
     look: "LOOK 02",
-    name: "Column Dress",
-    material: "Silk Organza, Bias-Cut — Made in Como",
-    price: "€ 2,450",
+    name: "Asymmetric Draped Tunic",
+    material: "Recycled Parachute Nylon, Obsidian — Tokyo",
+    price: "€ 1,640",
     featured: false,
     aspectRatio: "3/4",
     imgSrc: "https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=600&auto=format&fit=crop&q=80",
@@ -27,9 +27,9 @@ const PRODUCTS = [
   {
     id: 3,
     look: "LOOK 03",
-    name: "Structured Blazer",
-    material: "Cashmere Blend, Unlined — Milan",
-    price: "€ 1,890",
+    name: "Pleated Spiral Trousers",
+    material: "Pressed Paper Fabric, Raw White — Antwerp",
+    price: "€ 2,100",
     featured: false,
     aspectRatio: "3/4",
     imgSrc: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&auto=format&fit=crop&q=80",
@@ -37,9 +37,9 @@ const PRODUCTS = [
   {
     id: 4,
     look: "LOOK 04",
-    name: "Wide-Leg Trousers",
-    material: "Heavy Linen, Chalk White — Paris",
-    price: "€ 980",
+    name: "Inverted Seam Blazer",
+    material: "Double-Face Wool, Charcoal — Paris",
+    price: "€ 3,200",
     featured: false,
     aspectRatio: "4/3",
     wide: true,
@@ -48,9 +48,9 @@ const PRODUCTS = [
   {
     id: 5,
     look: "LOOK 05",
-    name: "Draped Blouse",
-    material: "Washed Satin, Ivory — Lyon",
-    price: "€ 720",
+    name: "Sculptural Wrap Dress",
+    material: "Heat-Moulded Organza, Bone — Tokyo",
+    price: "€ 2,750",
     featured: false,
     aspectRatio: "3/4",
     imgSrc: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&auto=format&fit=crop&q=80",
@@ -920,7 +920,7 @@ export function Home() {
               textTransform: "uppercase",
             }}
           >
-            SS 2025 — THE SILENCE COLLECTION
+            AW 2025 — THE VOID COLLECTION
           </span>
           <button
             onMouseEnter={() => setHoverViewAll(true)}
