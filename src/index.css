@@ -81,5 +81,22 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: #000000;
   }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-ui {
+    font-family: 'DM Sans', sans-serif;
+  }
+  .text-voss-offwhite { color: #f5f0eb; }
+  .text-voss-taupe { color: #9a9080; }
+  .text-voss-lime { color: #aaff4d; }
+  .bg-voss-black { background-color: #000000; }
+  .bg-voss-ash { background-color: #1c1c1c; }
+  .bg-voss-lime { background-color: #aaff4d; }
+  .border-voss-rule { border-color: #2a2a2a; }
 }
