@@ -777,8 +777,7 @@ export function Home() {
                     height: "100%",
                     objectFit: "cover",
                     objectPosition: "center 15%",
-                    filter: "grayscale(30%) contrast(1.08) brightness(0.85)",
-                    mixBlendMode: "luminosity",
+                    filter: "contrast(1.08) brightness(0.88) saturate(1.15)",
                   }}
                 />
                 <div
