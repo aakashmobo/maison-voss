@@ -22,7 +22,7 @@ const PRODUCTS = [
     price: "€ 1,640",
     featured: false,
     aspectRatio: "3/4",
-    imgSrc: "https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=600&auto=format&fit=crop&q=80",
+    imgSrc: "https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=600&auto=format&fit=crop&q=80",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const PRODUCTS = [
     price: "€ 2,100",
     featured: false,
     aspectRatio: "3/4",
-    imgSrc: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&auto=format&fit=crop&q=80",
+    imgSrc: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&auto=format&fit=crop&q=80",
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const PRODUCTS = [
     featured: false,
     aspectRatio: "4/3",
     wide: true,
-    imgSrc: "https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=900&auto=format&fit=crop&q=80",
+    imgSrc: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=900&auto=format&fit=crop&q=80",
   },
   {
     id: 5,
