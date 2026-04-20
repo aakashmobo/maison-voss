@@ -577,130 +577,170 @@ export function Home() {
       {/* ════════════════════════════════════
           SECTION 1 — HERO
       ════════════════════════════════════ */}
-      <div className="relative w-full min-h-screen flex flex-col">
+      <div style={{ position: "relative", width: "100%", minHeight: "100vh", display: "flex", flexDirection: "column", backgroundColor: "#000" }}>
+
         {/* ── NAV BAR ── */}
-        <nav className="flex items-center justify-between px-10 pt-8 pb-0 z-20">
-          <span
-            style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              color: "#f5f0eb",
-              fontSize: "13px",
-              letterSpacing: "0.25em",
-              fontWeight: 400,
-            }}
-          >
+        <nav style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "28px 48px 28px 48px",
+          borderBottom: "1px solid #141414",
+          zIndex: 20,
+          position: "relative",
+        }}>
+          {/* Wordmark */}
+          <span style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            color: "#f5f0eb",
+            fontSize: "11px",
+            letterSpacing: "0.42em",
+            fontWeight: 400,
+            textTransform: "uppercase",
+          }}>
             MAISON VOSS
           </span>
 
-          <div className="flex items-center gap-10">
+          {/* Nav links */}
+          <div style={{ display: "flex", alignItems: "center", gap: "48px" }}>
             {["Collections", "Atelier", "Lookbook", "Contact"].map((item) => (
               <span
                 key={item}
                 style={{
-                  color: "#9a9080",
-                  fontSize: "11px",
-                  letterSpacing: "0.18em",
+                  color: "#4a4540",
+                  fontSize: "10px",
+                  letterSpacing: "0.22em",
                   fontWeight: 300,
                   cursor: "pointer",
-                  transition: "color 0.2s",
+                  transition: "color 0.25s",
+                  fontFamily: "'DM Sans', sans-serif",
+                  textTransform: "uppercase",
                 }}
                 onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#f5f0eb")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#9a9080")}
+                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#4a4540")}
               >
-                {item.toUpperCase()}
+                {item}
               </span>
             ))}
           </div>
 
-          <span style={{ color: "#9a9080", fontSize: "11px", letterSpacing: "0.18em" }}>
-            SS 2025
-          </span>
+          {/* Right — season tag */}
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <span style={{
+              fontFamily: "'DM Sans', sans-serif",
+              color: "#4a4540",
+              fontSize: "10px",
+              letterSpacing: "0.22em",
+              fontWeight: 300,
+            }}>
+              AW 2025
+            </span>
+            <div style={{ width: "1px", height: "12px", backgroundColor: "#2a2a2a" }} />
+            <span style={{
+              fontFamily: "'DM Sans', sans-serif",
+              color: "#4a4540",
+              fontSize: "10px",
+              letterSpacing: "0.22em",
+              fontWeight: 300,
+            }}>
+              PARIS
+            </span>
+          </div>
         </nav>
 
         {/* ── HERO BODY ── */}
-        <div className="flex flex-1 items-stretch" style={{ minHeight: "calc(100vh - 120px)" }}>
+        <div style={{ display: "flex", flex: 1, minHeight: "calc(100vh - 68px - 40px)" }}>
+
           {/* LEFT COLUMN */}
-          <div
-            className="flex flex-col justify-between"
-            style={{ flex: "1 1 58%", padding: "48px 48px 48px 40px" }}
-          >
-            <div>
-              <span
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "11px",
-                  letterSpacing: "0.2em",
-                  color: "#9a9080",
-                  fontWeight: 300,
-                }}
-              >
-                · SS 2025 — PARIS ATELIER
+          <div style={{
+            flex: "1 1 55%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            padding: "64px 40px 56px 48px",
+            borderRight: "1px solid #141414",
+          }}>
+
+            {/* Top meta row */}
+            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+              <div style={{ width: "28px", height: "1px", backgroundColor: "#2a2a2a" }} />
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "9px",
+                letterSpacing: "0.38em",
+                color: "#4a4540",
+                fontWeight: 300,
+                textTransform: "uppercase",
+              }}>
+                THE VOID COLLECTION — AW 2025
               </span>
             </div>
 
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", marginTop: "32px" }}>
-              <div
-                style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
-                  fontWeight: 100,
-                  fontSize: "clamp(36px, 5vw, 72px)",
-                  color: "#f5f0eb",
-                  letterSpacing: "0.3em",
-                  lineHeight: 1,
-                  opacity: 0.55,
-                  marginBottom: "4px",
-                }}
-              >
+            {/* Display typography block */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "48px", paddingBottom: "48px" }}>
+
+              {/* "THE NEW" — thin, wide tracking */}
+              <div style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 300,
+                fontSize: "clamp(22px, 3.2vw, 52px)",
+                color: "#f5f0eb",
+                letterSpacing: "0.55em",
+                lineHeight: 1,
+                opacity: 0.28,
+                marginBottom: "-6px",
+                paddingLeft: "4px",
+              }}>
                 THE NEW
               </div>
 
-              <div style={{ position: "relative", lineHeight: 0.88 }}>
-                <div
-                  style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
-                    fontWeight: 900,
-                    fontStyle: "italic",
-                    fontSize: "clamp(80px, 13vw, 160px)",
-                    color: "#f5f0eb",
-                    letterSpacing: "-0.02em",
-                    lineHeight: 0.88,
-                    userSelect: "none",
-                    position: "relative",
-                    zIndex: 1,
-                  }}
-                >
+              {/* "SILENCE" — massive italic, with rule slicing through */}
+              <div style={{ position: "relative", display: "inline-block" }}>
+                <div style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontWeight: 900,
+                  fontStyle: "italic",
+                  fontSize: "clamp(96px, 16vw, 200px)",
+                  color: "#f5f0eb",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 0.85,
+                  userSelect: "none",
+                  position: "relative",
+                  zIndex: 1,
+                  whiteSpace: "nowrap",
+                }}>
                   SILENCE
                 </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "54%",
-                    left: "-40px",
-                    right: "-200px",
-                    height: "1px",
-                    backgroundColor: "#3a3a3a",
-                    zIndex: 2,
-                    pointerEvents: "none",
-                  }}
-                />
+                {/* Architectural rule cutting through letters */}
+                <div style={{
+                  position: "absolute",
+                  top: "52%",
+                  left: "-48px",
+                  right: "-60vw",
+                  height: "1px",
+                  backgroundColor: "#2e2e2e",
+                  zIndex: 2,
+                  pointerEvents: "none",
+                }} />
               </div>
 
-              <div style={{ marginTop: "40px" }}>
-                <span
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "11px",
-                    letterSpacing: "0.32em",
-                    color: "#9a9080",
-                    fontWeight: 300,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  SS 2025 COLLECTION — PARIS
+              {/* Subline */}
+              <div style={{ marginTop: "52px", display: "flex", alignItems: "center", gap: "20px" }}>
+                <div style={{ width: "24px", height: "1px", backgroundColor: "#2a2a2a" }} />
+                <span style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "10px",
+                  letterSpacing: "0.36em",
+                  color: "#9a9080",
+                  fontWeight: 300,
+                  textTransform: "uppercase",
+                }}>
+                  AW 2025 COLLECTION — PARIS
                 </span>
               </div>
 
-              <div style={{ marginTop: "32px" }}>
+              {/* CTA */}
+              <div style={{ marginTop: "40px" }}>
                 <button
                   onMouseEnter={() => setHoverCta(true)}
                   onMouseLeave={() => setHoverCta(false)}
@@ -710,14 +750,14 @@ export function Home() {
                     padding: 0,
                     cursor: "pointer",
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "13px",
-                    letterSpacing: "0.15em",
+                    fontSize: "12px",
+                    letterSpacing: "0.18em",
                     color: hoverCta ? "#aaff4d" : "#f5f0eb",
                     textDecoration: "underline",
-                    textDecorationColor: hoverCta ? "#aaff4d" : "#3a3a3a",
+                    textDecorationColor: hoverCta ? "#aaff4d" : "#2a2a2a",
                     textDecorationThickness: "1px",
-                    textUnderlineOffset: "6px",
-                    transition: "color 0.25s, text-decoration-color 0.25s",
+                    textUnderlineOffset: "7px",
+                    transition: "color 0.3s, text-decoration-color 0.3s",
                     fontWeight: 300,
                   }}
                 >
@@ -726,171 +766,200 @@ export function Home() {
               </div>
             </div>
 
-            <div style={{ paddingTop: "24px" }}>
-              <span
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "10px",
-                  letterSpacing: "0.2em",
-                  color: "#3a3a3a",
-                  fontWeight: 300,
-                }}
-              >
+            {/* Bottom meta row */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "9px",
+                letterSpacing: "0.28em",
+                color: "#2e2e2e",
+                fontWeight: 300,
+                textTransform: "uppercase",
+              }}>
                 LIMITED EDITION — 120 PIECES
+              </span>
+              <span style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontStyle: "italic",
+                fontSize: "11px",
+                color: "#2e2e2e",
+                fontWeight: 300,
+              }}>
+                Since 2008
               </span>
             </div>
           </div>
 
-          {/* RIGHT COLUMN — Portrait */}
-          <div
-            style={{
-              flex: "0 0 38%",
-              padding: "32px 40px 32px 0",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-end",
-            }}
-          >
-            <div
+          {/* RIGHT COLUMN — Full-bleed portrait */}
+          <div style={{
+            flex: "0 0 45%",
+            position: "relative",
+            overflow: "hidden",
+            backgroundColor: "#060606",
+          }}>
+            {/* Portrait image */}
+            <img
+              src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&auto=format&fit=crop&q=80"
+              alt="Editorial fashion — Maison Voss AW 2025"
               style={{
-                position: "relative",
                 width: "100%",
-                maxWidth: "420px",
                 height: "100%",
-                minHeight: "520px",
+                objectFit: "cover",
+                objectPosition: "center 12%",
+                filter: "contrast(1.12) brightness(0.82) saturate(1.1)",
+                display: "block",
+              }}
+            />
+
+            {/* Vignette overlays */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.7) 100%)",
+              pointerEvents: "none",
+            }} />
+            {/* Left edge fade — blends into left column */}
+            <div style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              width: "80px",
+              background: "linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%)",
+              pointerEvents: "none",
+            }} />
+
+            {/* Film grain SVG overlay */}
+            <svg
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                opacity: 0.04,
+                pointerEvents: "none",
+                mixBlendMode: "screen",
               }}
             >
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  backgroundColor: "#0a0a0a",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=80"
-                  alt="Editorial fashion — model in structured black coat"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center 15%",
-                    filter: "contrast(1.08) brightness(0.88) saturate(1.15)",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.15) 100%)",
-                    pointerEvents: "none",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "16px",
-                    left: "16px",
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "9px",
-                    letterSpacing: "0.2em",
-                    color: "#9a9080",
-                    opacity: 0.6,
-                    zIndex: 3,
-                  }}
-                >
-                  PHT. LENA VOGT — PARIS 2025
-                </div>
-              </div>
+              <filter id="grain">
+                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+                <feColorMatrix type="saturate" values="0" />
+              </filter>
+              <rect width="100%" height="100%" filter="url(#grain)" />
+            </svg>
 
-              <div
-                style={{
-                  position: "absolute",
-                  top: "28px",
-                  right: "-16px",
-                  backgroundColor: "#aaff4d",
-                  borderRadius: "999px",
-                  padding: "6px 16px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "5px",
-                    height: "5px",
-                    borderRadius: "50%",
-                    backgroundColor: "#000",
-                    flexShrink: 0,
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "10px",
-                    letterSpacing: "0.18em",
-                    color: "#000",
-                    fontWeight: 500,
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  NOW ARRIVING
-                </span>
-              </div>
+            {/* "NOW ARRIVING" pill — top right */}
+            <div style={{
+              position: "absolute",
+              top: "32px",
+              right: "24px",
+              backgroundColor: "#aaff4d",
+              borderRadius: "999px",
+              padding: "7px 18px",
+              display: "flex",
+              alignItems: "center",
+              gap: "7px",
+              zIndex: 10,
+            }}>
+              <div style={{
+                width: "5px",
+                height: "5px",
+                borderRadius: "50%",
+                backgroundColor: "#000",
+                flexShrink: 0,
+              }} />
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "9px",
+                letterSpacing: "0.22em",
+                color: "#000",
+                fontWeight: 600,
+                whiteSpace: "nowrap",
+                textTransform: "uppercase",
+              }}>
+                Now Arriving
+              </span>
+            </div>
 
-              <div
-                style={{
-                  position: "absolute",
-                  right: "-32px",
-                  top: "50%",
-                  transform: "translateY(-50%) rotate(90deg)",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "9px",
-                  letterSpacing: "0.25em",
-                  color: "#3a3a3a",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                MAISON VOSS · PARIS
-              </div>
+            {/* Bottom-left photo credit */}
+            <div style={{
+              position: "absolute",
+              bottom: "20px",
+              left: "20px",
+              zIndex: 10,
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+            }}>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "8px",
+                letterSpacing: "0.22em",
+                color: "rgba(245,240,235,0.3)",
+                fontWeight: 300,
+                textTransform: "uppercase",
+              }}>
+                PHT. LENA VOGT
+              </span>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "8px",
+                letterSpacing: "0.22em",
+                color: "rgba(245,240,235,0.18)",
+                fontWeight: 300,
+                textTransform: "uppercase",
+              }}>
+                PARIS — 2025
+              </span>
+            </div>
+
+            {/* Vertical right-edge label */}
+            <div style={{
+              position: "absolute",
+              right: "16px",
+              bottom: "80px",
+              transform: "rotate(90deg)",
+              transformOrigin: "right bottom",
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "8px",
+              letterSpacing: "0.3em",
+              color: "rgba(245,240,235,0.15)",
+              fontWeight: 300,
+              whiteSpace: "nowrap",
+              textTransform: "uppercase",
+            }}>
+              MAISON VOSS · AW 2025
             </div>
           </div>
         </div>
 
         {/* ── TICKER STRIP ── */}
-        <div
-          style={{
-            borderTop: "1px solid #1c1c1c",
-            backgroundColor: "#000",
-            height: "36px",
+        <div style={{
+          borderTop: "1px solid #141414",
+          backgroundColor: "#000",
+          height: "40px",
+          display: "flex",
+          alignItems: "center",
+          overflow: "hidden",
+          flexShrink: 0,
+        }}>
+          <div style={{
             display: "flex",
-            alignItems: "center",
-            overflow: "hidden",
-            flexShrink: 0,
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              whiteSpace: "nowrap",
-              animation: "ticker 40s linear infinite",
-            }}
-          >
+            whiteSpace: "nowrap",
+            animation: "ticker 50s linear infinite",
+          }}>
             {[0, 1].map((i) => (
               <span
                 key={i}
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "11px",
-                  letterSpacing: "0.22em",
-                  color: "#3a3a3a",
+                  fontSize: "10px",
+                  letterSpacing: "0.28em",
+                  color: "#2a2a2a",
                   fontWeight: 300,
                 }}
               >
-                {Array.from({ length: 8 }).map(() => TICKER_TEXT).join("")}
+                {Array.from({ length: 10 }).map(() => TICKER_TEXT).join("")}
               </span>
             ))}
           </div>
