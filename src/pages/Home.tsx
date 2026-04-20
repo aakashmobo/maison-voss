@@ -43,7 +43,7 @@ const PRODUCTS = [
     featured: false,
     aspectRatio: "4/3",
     wide: true,
-    imgSrc: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&auto=format&fit=crop&q=80",
+    imgSrc: "https://images.unsplash.com/photo-1594938298603-c8148c4b4057?w=900&auto=format&fit=crop&q=80",
   },
   {
     id: 5,
