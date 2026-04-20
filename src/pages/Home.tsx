@@ -787,7 +787,7 @@ export function Home() {
                 fontWeight: 300,
                 textTransform: "uppercase",
               }}>
-                AW 2025 COLLECTION — PARIS
+                AW 2025 COLLECTION — UK
               </span>
             </div>
 
