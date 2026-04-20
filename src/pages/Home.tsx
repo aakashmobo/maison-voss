@@ -22,7 +22,7 @@ const PRODUCTS = [
     price: "€ 2,450",
     featured: false,
     aspectRatio: "3/4",
-    imgSrc: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&auto=format&fit=crop&q=80",
+    imgSrc: "https://images.unsplash.com/photo-1551803091-e20673f15770?w=600&auto=format&fit=crop&q=80",
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ const PRODUCTS = [
     featured: false,
     aspectRatio: "4/3",
     wide: true,
-    imgSrc: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&auto=format&fit=crop&q=80",
+    imgSrc: "https://images.unsplash.com/photo-1594938298603-c8148c4b4057?w=900&auto=format&fit=crop&q=80",
   },
   {
     id: 5,
