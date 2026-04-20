@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+.npm/
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sandbox home-directory artifacts (not part of the project)
+.local/
+.cache/
+.config/
+.pnpm-store/
+
+# Misc
+*.tar.gz

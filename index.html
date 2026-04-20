@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vibx App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      function __vibxReport(err){try{fetch('/__error_report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({error:String(err),ts:Date.now()})})}catch(e){}try{if(window.parent&&window.parent!==window){window.parent.postMessage({type:'PREVIEW_FIX_ERROR',error:String(err),source:'global'},'*')}}catch(x){}}
+      window.onerror=function(m,u,l){__vibxReport(m+'\n'+(u||'')+':'+(l||''));
+        var r=document.getElementById('root');
+        if(r&&!r.hasChildNodes())r.innerHTML='<div style="padding:2rem;font-family:monospace">'
+          +'<h2 style="color:#ef4444">Runtime Error</h2>'
+          +'<pre style="background:#1e1e1e;color:#f8f8f2;padding:1rem;border-radius:8px;overflow:auto;white-space:pre-wrap">'
+          +m+'\n'+(u||'')+':'+(l||'')+'</pre></div>'};
+      window.addEventListener('unhandledrejection',function(e){__vibxReport(String(e.reason||e));
+        var r=document.getElementById('root');
+        if(r&&!r.hasChildNodes())r.innerHTML='<div style="padding:2rem;font-family:monospace">'
+          +'<h2 style="color:#ef4444">Unhandled Error</h2>'
+          +'<pre style="background:#1e1e1e;color:#f8f8f2;padding:1rem;border-radius:8px;overflow:auto;white-space:pre-wrap">'
+          +(e.reason||e)+'</pre></div>'});
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
